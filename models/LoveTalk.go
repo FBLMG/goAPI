@@ -20,14 +20,16 @@ type LoveTalk struct {
 	Sort      int    `json:"sort" form:"sort"`
 }
 
+//初始化单条、列表容器
+var data LoveTalk
+var dataList []LoveTalk
+
 /**
 根据条件获取单条记录
  */
-func (loveTalk *LoveTalk) LoveTalkWithWhere() (LoveTalk) {
-	//初始化容器
-	var data LoveTalk
+func (modelTable *LoveTalk) LoveTalkWithWhere() (LoveTalk) {
 	//获取单条数据
-	orm.SqlDB.Where(&loveTalk).First(&data)
+	orm.SqlDB.Where(&modelTable).First(&data)
 	//返回数据
 	return data
 }
@@ -35,11 +37,9 @@ func (loveTalk *LoveTalk) LoveTalkWithWhere() (LoveTalk) {
 /**
 获取数据列表【带分页】
  */
-func (loveTalk *LoveTalk) LoveTalkGetDataList(offset, pageNumber int) ([]LoveTalk) {
-	//初始化数据容器
-	var dataList []LoveTalk
+func (modelTable *LoveTalk) LoveTalkGetDataList(offset, pageNumber int) ([]LoveTalk) {
 	//获取数据
-	orm.SqlDB.Where(&loveTalk).Limit(pageNumber).Offset(offset).Order("sort asc").Find(&dataList)
+	orm.SqlDB.Where(&modelTable).Limit(pageNumber).Offset(offset).Order("sort asc").Find(&dataList)
 	//返回
 	return dataList
 }
@@ -47,12 +47,11 @@ func (loveTalk *LoveTalk) LoveTalkGetDataList(offset, pageNumber int) ([]LoveTal
 /**
 获取数据总数
  */
-func (loveTalk *LoveTalk) LoveTalkGetDataCount() int {
-	//初始化数据容器
-	var dataList []LoveTalk
+func (modelTable *LoveTalk) LoveTalkGetDataCount() int {
+	//初始化数据
 	var count int
 	//获取数据
-	orm.SqlDB.Where(&loveTalk).Find(&dataList).Count(&count)
+	orm.SqlDB.Where(&modelTable).Find(&dataList).Count(&count)
 	//返回
 	return count
 }
@@ -60,10 +59,10 @@ func (loveTalk *LoveTalk) LoveTalkGetDataCount() int {
 /**
 添加记录
  */
-func (loveTalk LoveTalk) LoveTalkInsert() int {
+func (modelTable LoveTalk) LoveTalkInsert() int {
 	//添加数据
-	result := orm.SqlDB.Create(&loveTalk)
-	id := loveTalk.Id
+	result := orm.SqlDB.Create(&modelTable)
+	id := modelTable.Id
 	if result.Error != nil {
 		return 0
 	}
@@ -73,9 +72,9 @@ func (loveTalk LoveTalk) LoveTalkInsert() int {
 /**
 更新数据
  */
-func (loveTalk LoveTalk) LoveTalkUpdate(updateData LoveTalk) int {
+func (modelTable LoveTalk) LoveTalkUpdate(updateData LoveTalk) int {
 	//更新数据
-	result := orm.SqlDB.Model(&updateData).Updates(&loveTalk)
+	result := orm.SqlDB.Model(&updateData).Updates(&modelTable)
 	if result.Error != nil {
 		return 0
 	}
@@ -86,9 +85,9 @@ func (loveTalk LoveTalk) LoveTalkUpdate(updateData LoveTalk) int {
 /**
 条件更新
  */
-func (loveTalk LoveTalk) LoveTalkUpdateWithWhere(updateWhere, updateData LoveTalk) int {
+func (modelTable LoveTalk) LoveTalkUpdateWithWhere(updateWhere, updateData LoveTalk) int {
 	//更新数据
-	result := orm.SqlDB.Model(&updateData).Where(&updateWhere).Updates(&loveTalk)
+	result := orm.SqlDB.Model(&updateData).Where(&updateWhere).Updates(&modelTable)
 	if result.Error != nil {
 		return 0
 	}
@@ -99,9 +98,9 @@ func (loveTalk LoveTalk) LoveTalkUpdateWithWhere(updateWhere, updateData LoveTal
 /**
 删除数据
  */
-func (loveTalk *LoveTalk) LoveTalkDelete() int64 {
+func (modelTable *LoveTalk) LoveTalkDelete() int64 {
 	//删除数据
-	result := orm.SqlDB.Delete(&loveTalk)
+	result := orm.SqlDB.Delete(&modelTable)
 	if result.Error != nil {
 		return 0
 	}
@@ -112,11 +111,9 @@ func (loveTalk *LoveTalk) LoveTalkDelete() int64 {
 /**
 获取数据列表【不带分页】
  */
-func (loveTalk *LoveTalk) LoveTalkGetDataListWithHome() ([]LoveTalk) {
-	//初始化数据容器
-	var dataList []LoveTalk
+func (modelTable *LoveTalk) LoveTalkGetDataListWithHome() ([]LoveTalk) {
 	//获取数据
-	orm.SqlDB.Where(&loveTalk).Order("sort asc").Find(&dataList)
+	orm.SqlDB.Where(&modelTable).Order("sort asc").Find(&dataList)
 	//返回
 	return dataList
 }
