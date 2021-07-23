@@ -6,9 +6,9 @@
 
 # 2、目录
 
-##conf:配置文件
-##controllers:控制器
-##db:数据库
-##doc:文档
-##models:数据库
-##static:图片、样式目录
+conf:配置文件
+controllers:控制器
+db:数据库
+doc:文档
+models:数据库
+static:图片、样式目录  
