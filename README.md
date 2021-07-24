@@ -75,3 +75,6 @@ go build
 ```
  # 5、部署并通过Nginx转发
  [Gin编译部署到centos并搭配Nginx运行](https://hongzx.cn/home/blogShow/155)
+ 
+ # 6、后续版本
+ 下一版本打算加入API令牌以及平滑启动
