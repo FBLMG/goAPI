@@ -98,7 +98,12 @@ func IdentificationData(token string, timeStamp int64, path string) int {
 	//处理路径【去除/】
 	pathSign := strings.Replace(path, "/", "", -1)
 	//判断秘钥是否正确【int64转字符串】
-	localToken := ProjectPrivateKey + pathSign + strconv.FormatInt(timeStamp, 10)
+	conversion := ProjectPrivateKey + pathSign + strconv.FormatInt(timeStamp, 10)
+	//计算md5
+	encryption := md5.New()
+	io.WriteString(encryption, conversion)                //将str写入到w中
+	localToken := fmt.Sprintf("%x", encryption.Sum(nil)) //w.Sum(nil)将w的hash转成[]byte格式
+	//判断密钥是否正确
 	if localToken != token {
 		return -1
 	}

@@ -20,9 +20,9 @@ func main() {
 	//定义路由
 	router := initRouter()
 	//监听端口
-	err := endless.ListenAndServe(":"+projectPort,router)
+	err := endless.ListenAndServe(":"+projectPort, router)
 	if err != nil {
-		log.Println("err:",err)
+		log.Println("err:", err)
 	}
 	//router.Run(":" + projectPort)
 }

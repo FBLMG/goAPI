@@ -10,6 +10,7 @@ import (
 	"strings"
 	"net/http"
 	. "goAPI/controllers"
+	"strconv"
 )
 
 //路由
@@ -61,7 +62,41 @@ func APIControlMiddleware(context *gin.Context) {
 
 //后台接口-设置路由中间件【权鉴校验】
 func AdminControlMiddleware(context *gin.Context) {
-
+	//白名单状态 1：否 2：是
+	whileRouteStatus := 1
+	//获取当前路由
+	path := context.FullPath()
+	//设置路由白名单
+	var whiteListRouter = []string{"/", "/admin/UploadFile/uploadImage"}
+	//循环判断是否命中白名单
+	for i := 0; i < len(whiteListRouter); i++ {
+		if path == whiteListRouter[i] {
+			whileRouteStatus = 2
+		}
+	}
+	//判断是否需要校验
+	if whileRouteStatus == 1 {
+		//获取头部参数
+		token := context.GetHeader("token")
+		tokenTime := context.GetHeader("tokenTime")
+		if token == "" || tokenTime == "" {
+			//令牌缺失返回
+			context.Abort()
+			ReturnErrorOther(502, "令牌缺失", context)
+		} else {
+			//转化数据
+			tokenTimeInt, _ := strconv.ParseInt(tokenTime, 10, 64)
+			//检验密钥是否正确
+			tokenResult := IdentificationData(token, tokenTimeInt, path)
+			if tokenResult != 1 {
+				context.Abort()
+				ReturnErrorOther(502, "令牌有误", context)
+			} else {
+				//控制权交换给路由
+				context.Next()
+			}
+		}
+	}
 }
 
 //路由中间件-防跨域

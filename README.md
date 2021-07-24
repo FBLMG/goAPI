@@ -93,5 +93,24 @@ go build
  
  
  
- # 7、后续版本
- 下一版本打算加入API令牌
+ # 7、API令牌
+请在接口头部请求传多两个参数：token，tokenTime
+
+### tokenTime
+
+当前时间戳，例：1627138701
+
+### token:
+
+令牌组合 md5(【配置文件ProjectPrivateKey参数】+【去除/路由】+【tokenTime】)
+
+假设访问路由：http://localhost:9999/admin/loveTalk/getDataList
+
+配置文件默认ProjectPrivateKey参数：goAPI
+
+路由去除/后[请去除域名或ip:端口部分]：adminloveTalkgetDataList
+
+最终组合token：md5(goAPI+adminloveTalkgetDataList+1627138701)
+
+更多详情可访问：[API令牌使用](https://hongzx.cn/home/blogPrivateShow/160)
+
