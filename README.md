@@ -28,4 +28,5 @@ go get -u github.com/tencentyun/cos-go-sdk-v5
 
 go get -u github.com/jinzhu/gorm
 
-go get -u github.com/go-sql-driver/mysql  
+go get -u github.com/go-sql-driver/mysql
+
