@@ -24,7 +24,7 @@ func HomeIndex(c *gin.Context) {
 	dataList["ip"] = ip
 	dataList["host"] = host
 	//返回
-	ReturnSuccess("欢迎来到Go世界", c, dataList)
+	ReturnSuccess("欢迎来到GoLand世界", c, dataList)
 }
 
 /**

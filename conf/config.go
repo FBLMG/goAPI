@@ -35,9 +35,9 @@ func (config *Config) ConfigGetValue() Config {
 	conf.MysqlPort = "3306"             //数据库端口
 	conf.MysqlRoot = "root"             //数据库账户
 	conf.MysqlPassword = ""             //数据库密码
-	conf.MysqlDataBase = "goAPI"        //数据库名
-	conf.ProjectPort = "9999"           //项目启动端口
-	conf.ProjectName = "Go-API项目"       //项目名称
+	conf.MysqlDataBase = "projectApi"   //数据库名
+	conf.ProjectPort = "9998"           //项目启动端口
+	conf.ProjectName = "Go-API项目"     //项目名称
 	conf.ProjectPrivateKey = "goAPI"    //网站验证私钥
 	conf.CosSecretId = ""               //腾讯云Cos-SecretID
 	conf.CosSecretKey = ""              //腾讯云Cos-SecretKey

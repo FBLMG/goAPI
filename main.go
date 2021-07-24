@@ -4,6 +4,8 @@ package main
 import (
 	"goAPI/db"
 	"goAPI/conf"
+	"github.com/fvbock/endless"
+	"log"
 )
 
 //定义主入口
@@ -17,6 +19,10 @@ func main() {
 	defer db.SqlDB.Close()
 	//定义路由
 	router := initRouter()
-	//设置端口
-	router.Run(":" + projectPort)
+	//监听端口
+	err := endless.ListenAndServe(":"+projectPort,router)
+	if err != nil {
+		log.Println("err:",err)
+	}
+	//router.Run(":" + projectPort)
 }

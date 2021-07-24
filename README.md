@@ -26,7 +26,7 @@ static:图片、样式目录
 
 [Mac环境下安装Go并配置环境变量](https://hongzx.cn/home/blogShow/134)
 
-#### 由于使用了mysql、腾讯云COS，防止出错，请在开发前安装下面4个扩展包
+#### 由于使用了mysql、腾讯云COS、平滑重启，防止出错，请在开发前安装下面4个扩展包
 ```
 go get -u github.com/gin-gonic/gin
 
@@ -35,6 +35,8 @@ go get -u github.com/tencentyun/cos-go-sdk-v5
 go get -u github.com/jinzhu/gorm
 
 go get -u github.com/go-sql-driver/mysql
+
+go get -u github.com/fvbock/endless
 ```
 
 #### 修改conf目录下的config配置文件
@@ -76,5 +78,20 @@ go build
  # 5、部署并通过Nginx转发
  [Gin编译部署到centos并搭配Nginx运行](https://hongzx.cn/home/blogShow/155)
  
- # 6、后续版本
- 下一版本打算加入API令牌以及平滑启动
+ # 6、平滑重启
+ 新版本加入了平滑重启功能，暂不支持WIN环境。
+ 
+ 在Linux环境下使用以下命令
+ ```
+ 后台守护进程【首次使用】:
+ nohup ./goAPI&
+ 
+ 平滑重启【每次迭代必用】
+ kill -1 PID
+ 
+ ```
+ 
+ 
+ 
+ # 7、后续版本
+ 下一版本打算加入API令牌
