@@ -39,7 +39,7 @@ go get -u github.com/go-sql-driver/mysql
 
 # 4、编译运行
 
-####运行命令
+运行命令
 ```
 go run ./
 ```
@@ -47,7 +47,7 @@ go run ./
 
 http://localhost:9999
 
-####打包成文件
+打包成文件
 
  Win环境下打包编译：
  
