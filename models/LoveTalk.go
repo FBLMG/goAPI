@@ -6,7 +6,7 @@ package models
 
 //引入模块
 import (
-	orm "personApi/db"
+	orm "goAPI/db"
 )
 
 //表结构构造
