@@ -39,7 +39,9 @@ go get -u github.com/go-sql-driver/mysql
 
 #### 修改conf目录下的config配置文件
 
-数据库信息以及配置腾讯云cos配置
+- 修改数据库信息以及配置腾讯云cos配置
+
+- 项目默认端口是9999，如果端口被占用，请修改config配置文件的端口
 
 # 4、编译运行
 
