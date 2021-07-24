@@ -22,6 +22,10 @@ static:图片、样式目录
 
 #### 安装Go以及配置GOPATH、GOROOT
 
+[Win环境下安装Go并配置环境变量](https://hongzx.cn/home/blogShow/131)
+
+[Mac环境下安装Go并配置环境变量](https://hongzx.cn/home/blogShow/134)
+
 #### 由于使用了mysql、腾讯云COS，防止出错，请在开发前安装下面4个扩展包
 ```
 go get -u github.com/gin-gonic/gin
@@ -39,7 +43,7 @@ go get -u github.com/go-sql-driver/mysql
 
 # 4、编译运行
 
-运行命令
+#### 运行命令
 ```
 go run ./
 ```
@@ -47,7 +51,7 @@ go run ./
 
 http://localhost:9999
 
-打包成文件
+#### 打包成文件
 
  Win环境下打包编译：
  
